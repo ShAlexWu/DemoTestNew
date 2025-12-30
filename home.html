@@ -3,70 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首页</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 60px 40px;
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        h1 {
-            color: #333;
-            font-size: 32px;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .link-container {
-            margin-top: 40px;
-        }
-
-        .link-to-login {
-            color: #667eea;
-            font-size: 18px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 10px;
-        }
-
-        .link-to-login:hover {
-            color: #764ba2;
-            background-color: rgba(102, 126, 234, 0.1);
-            text-decoration: underline;
-        }
-    </style>
+    <title>用户登录与注册</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>欢迎访问</h1>
-        <div class="link-container">
-            <a href="index.html" class="link-to-login">跳转到烽火科技登录注册页面</a>
+        <div class="form-container">
+            <!-- 登录表单 -->
+            <div class="form-wrapper" id="loginForm">
+                <h2>欢迎回来</h2>
+                <p class="subtitle">登录您的账户</p>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>记住我</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                    <p class="form-switch">
+                        还没有账户？ <a href="#" id="switchToRegister">立即注册</a>
+                    </p>
+                    <div class="time-display" id="timeDisplay"></div>
+                    <div class="company-name">烽火科技</div>
+                </form>
+            </div>
+
+            <!-- 注册表单 -->
+            <div class="form-wrapper hidden" id="registerForm">
+                <h2>创建账户</h2>
+                <p class="subtitle">注册新用户</p>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <input type="text" id="registerUsername" name="username" required minlength="3">
+                        <span class="error-message" id="usernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">邮箱</label>
+                        <input type="email" id="registerEmail" name="email" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <input type="password" id="registerPassword" name="password" required minlength="6">
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">确认密码</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">注册</button>
+                    <p class="form-switch">
+                        已有账户？ <a href="#" id="switchToLogin">立即登录</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- 成功消息 -->
+            <div class="message-box hidden" id="messageBox">
+                <div class="message-content">
+                    <span class="message-icon" id="messageIcon">✓</span>
+                    <p id="messageText"></p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
 
